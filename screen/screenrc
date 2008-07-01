@@ -1,0 +1,9 @@
+startup_message off
+autodetach on
+
+hardstatus alwayslastline '%{= dd}%c %06=%-Lw%40L>%{+b}%n*%f%t%{-}%+Lw%<'
+
+msgwait 5
+
+focus
+select 0

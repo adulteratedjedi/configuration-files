@@ -1,9 +1,11 @@
 startup_message off
 autodetach on
-
+shell zsh
 hardstatus alwayslastline '%{= dd}%c %06=%-Lw%40L>%{+b}%n*%f%t%{-}%+Lw%<'
-
 msgwait 5
+
+screen -t shell zsh
+screen -t irb irb
 
 focus
 select 0

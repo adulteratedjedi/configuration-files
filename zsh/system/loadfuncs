@@ -1,0 +1,76 @@
+# ZSH configuration file
+# Executed for all shells via zshenv
+# Set up all the autoloaded functions. This is executed for all shells very early on
+# Written by Martin Ebourne
+#
+# $Id$
+
+# This file can be included more than once. Only execute it once though
+if ! functions add_functions_directory >/dev/null
+then
+
+  # Empty hook called after each functions directory has been added
+  # Usage: _add_functions_hook <directory> <functions> ...
+  _add_functions_hook() {
+  }
+
+  # Add given directory to start of zsh function path if not already present.
+  # Also register all files in the given directory for autoloading, whether
+  # or not directory was already present.
+  # Note that directory given is relative to $ZCONFIGDIR
+  add_functions_directory() {
+    local newdir="$argv[1]"
+
+    if [[ $newdir != /* ]]
+    then
+      # Need to look in the right directory depending on whether user config or otherwise
+      if [[ $newdir == user/* ]]
+      then
+        newdir=$ZUSERCONFIGDIR/${newdir#user/}
+      else
+        newdir=$ZCONFIGDIR/$newdir
+      fi
+    fi
+
+    if [[ -d $newdir ]]
+    then
+      # Add the directory to FPATH if not already present
+      if [[ -z $fpath[(r)$newdir] ]]
+      then
+	fpath=($newdir $fpath)
+      fi
+
+      # Get a list of files in the directory, and filter out backups. Care to handle the
+      # no-match case
+      local files=""
+      files=($newdir/*(N.))
+      files=(${files:t})
+      files=(${files:#*~})
+      files=(${files:#\#*\#})
+
+      # Autoload the files if there are any left
+      if [[ -n $files ]]
+      then
+	autoload -U - $files
+
+	if [[ -n $ZCONFIGDEBUG ]]
+	then
+	  echo "Autoloading functions from $argv[1]:"
+	  print -c - $files
+	fi
+
+	_add_functions_hook $newdir "$files[@]"
+      fi
+    fi
+  }
+
+  # Should have a Zsh 'Misc' directory on fpath. If so, autoload them
+  if [[ -n $fpath[(r)*/Misc] ]]
+  then
+    add_functions_directory $fpath[(r)*/Misc]
+  fi
+
+  add_functions_directory system/functions
+  add_functions_directory local/current/functions
+  add_functions_directory user/functions
+fi

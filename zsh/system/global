@@ -1,0 +1,2 @@
+# Enable functions early & for everyone
+config_if_present system/loadfuncs

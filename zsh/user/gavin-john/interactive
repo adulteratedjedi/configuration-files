@@ -1,0 +1,5 @@
+# ZSH configuration file
+# Executed for interactive shells via zshrc
+# User's own setup for interactive shells. Run after all other setup has been done
+
+ttyctl -f

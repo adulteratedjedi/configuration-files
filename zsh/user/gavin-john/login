@@ -1,0 +1,7 @@
+# ZSH configuration file
+# Executed for login shells via zprofile
+# User's own setup for login shells. Run after all other login setup has been done
+
+export NAME="Gavin-John Noonan"
+
+path=(/usr/local/bin /usr/local/pgsql/bin $path)

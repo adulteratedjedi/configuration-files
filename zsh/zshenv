@@ -5,7 +5,7 @@
 # $Id$
 
 # Enable this (or call the shell with it already set) for progress reports during config
-ZCONFIGDEBUG=1
+# ZCONFIGDEBUG=1
 
 # Enable this (or call the shell with it already set) for profiling output
 #ZCONFIGPROFILE=1

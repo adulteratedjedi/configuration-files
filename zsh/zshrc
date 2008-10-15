@@ -1,0 +1,36 @@
+# ZSH configuration file
+# This is the zshrc file sourced directly by zsh
+# Written by Martin Ebourne
+#
+# $Id: zshrc 792 2003-09-22 11:47:18Z martin $
+
+ZFILE=zshrc
+[[ -n $ZCONFIGDEBUG ]] && echo "Executing config file $ZFILE"
+
+_init_zshrc() {
+  [[ -z $ZCONFIGDIR ]] && { print "ERROR: ZCONFIGDIR unset in $ZFILE" ; exit 1 }
+
+  config_if_present system/interactive
+  config_if_present local/current/interactive
+  config_if_present user/interactive
+}
+_init_zshrc
+unfunction _init_zshrc
+
+# TRAPEXIT cannot be set within the other files since they are in a function.
+# Hence need to catch trapexit being set and translate it here
+if functions trapexit >/dev/null
+then
+  TRAPEXIT() {
+    trapexit
+  }
+fi
+
+# Profiling. Report results
+if [[ -n $ZCONFIGPROFILE ]]
+then
+  zprof
+fi
+
+[[ -n $ZCONFIGDEBUG ]] && echo "Finished config file $ZFILE"
+unset ZFILE

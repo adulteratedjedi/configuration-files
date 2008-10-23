@@ -3,6 +3,8 @@
 # User's own setup for login shells. Run after all other login setup has been done
 
 export NAME="Gavin-John Noonan"
+export EMAIL="gavinjohn.noonan@gmail.com"
+export EDITOR='mate -w'
 
 path=(/usr/local/bin /usr/local/pgsql/bin $path)
 

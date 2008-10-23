@@ -1,1 +1,4 @@
-alias ls="ls -G"
+alias la='command ls -aFvbG '
+alias ls='command ls -FvbG '
+alias ll='command ls -lFvbhG'
+alias dir='command ls -alFvbhG '

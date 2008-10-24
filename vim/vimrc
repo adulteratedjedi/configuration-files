@@ -1,0 +1,62 @@
+colorscheme ir_black
+
+set nocompatible      " We're running Vim, not Vi!
+
+set expandtab
+set tabstop=2 shiftwidth=2 softtabstop=2
+set sta
+set autoindent
+
+" Indenting ********************************************************************
+set ai " Automatically set the indent of a new line (local to buffer)
+set si " smartindent  (local to buffer)
+
+" Scrollbars ******************************************************************
+set sidescrolloff=2
+set numberwidth=4
+ 
+" Windows *********************************************************************
+set equalalways " Multiple windows, when created, are equal in size
+set splitbelow splitright
+ 
+"Vertical split then hop to new buffer
+:noremap ,v :vsp^M^W^W<cr>
+:noremap ,h :split^M^W^W<cr>
+
+" Cursor highlights ***********************************************************
+set cursorline
+"set cursorcolumn
+ 
+" Searching *******************************************************************
+set hlsearch  " highlight search
+set incsearch  " incremental search, search as you type
+set ignorecase " Ignore case when searching 
+set smartcase " Ignore case when searching lowercase
+
+" Status Line *****************************************************************
+set showcmd
+set ruler " Show ruler
+
+" Mappings ********************************************************************
+" Professor VIM says '87% of users prefer jj over esc', jj abrams strongly disagrees
+imap jj <Esc>
+imap uu _
+imap hh =>
+imap aa @
+map <Tab><Tab> <C-W>w
+
+set number
+
+syntax on             " Enable syntax highlighting
+filetype on           " Enable filetype detection
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
+compiler ruby         " Enable compiler support for ruby
+
+" Plugin Specific ************************************************************
+let g:fuzzy_matching_limit=30
+if has("ruby")
+  map <leader>t :FuzzyFinderTextMate<CR>
+else
+  map <leader>t :FuzzyFinderFile<CR>
+end

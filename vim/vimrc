@@ -54,9 +54,13 @@ filetype plugin on    " Enable filetype-specific plugins
 compiler ruby         " Enable compiler support for ruby
 
 " Plugin Specific ************************************************************
-let g:fuzzy_matching_limit=30
+let g:fuzzy_ignore = "*.log"
+let g:fuzzy_matching_limit = 70
 if has("ruby")
   map <leader>t :FuzzyFinderTextMate<CR>
 else
   map <leader>t :FuzzyFinderFile<CR>
 end
+
+map <leader>b :FuzzyFinderBuffer<CR>
+

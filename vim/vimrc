@@ -53,6 +53,10 @@ filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 compiler ruby         " Enable compiler support for ruby
 
+" use ack for vim grep
+set grepprg=ack
+set grepformat=%f:%l:%m
+
 " Plugin Specific ************************************************************
 let g:fuzzy_ignore = "*.log"
 let g:fuzzy_matching_limit = 70

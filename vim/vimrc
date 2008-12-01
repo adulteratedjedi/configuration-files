@@ -1,5 +1,5 @@
 colorscheme ir_black
-
+let mapleader = ","
 set nocompatible      " We're running Vim, not Vi!
 
 set expandtab
@@ -20,8 +20,8 @@ set equalalways " Multiple windows, when created, are equal in size
 set splitbelow splitright
  
 "Vertical split then hop to new buffer
-:noremap ,v :vsp^M^W^W<cr>
-:noremap ,h :split^M^W^W<cr>
+:noremap <leader>v :vsp^M^W^W<cr>
+:noremap <leader>h :split^M^W^W<cr>
 
 " Cursor highlights ***********************************************************
 set cursorline
